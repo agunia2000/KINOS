@@ -1,0 +1,102 @@
+<div class="modal" id="reservationModal">
+    <span class="modal-content" style="color: white;">
+        <div class="modal-header">
+            <p class="modal_title">Wybierz seans</p>
+        </div>
+		{% if screenings|length == 0 %}
+			<div class="modal-mesh" style="text-align: center; display: flex; align-items: center; justify-content: center;">
+				<span class="card-title" style="font-family: Impact; font-size: 40px;">BRAK SEANSÓW</span>
+			</div>
+		{% else %}
+			{% if screenings|length > 5 %}
+				<div class="modal-mesh" style="text-align: center;">
+			{% else %}
+				<div class="modal-mesh" style="text-align: center; display: flex; align-items: center; justify-content: center;">
+			{% endif %}
+			{% for screening in screenings %}
+				<button onclick="location.href='/screening/{{ screening['sid'] }}'" class="btn btn-light btn-md mx-2 my-4" style="height: 35%; width: 15%;">
+					{{ screening['day']|date('l')[0:3] }}
+					<br>
+					{{ screening['day']|date('d') }}
+					<br>
+					{{ screening['day']|date('F')|upper[0:3] }}
+					<br>
+					{{ screening['time'][0:5] }}
+				</button>
+			{% endfor %}
+				</div>
+		{% endif %}
+    </span>
+</div>
+
+<div class="container mt-1">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-5">
+                    <img class="big_img" src="{{ poster_path }}" alt="">
+                </div>
+                <span class="col-md" style="color: white; position: relative">
+                    <br>
+                    <span class="card-title" style="font-family: Impact; font-size: 50px;">{{ title }}</span>
+                    <br><br>
+                    {{ description }}
+                    <br><br>
+                    <b>Reżyseria:</b> {{ director }}
+                    <br>
+                    <b>Gatunek:</b> {{ genre }}
+                    <br>
+                    <b>Czas trwania:</b> {{ duration }} min.
+                    <br>
+                    <b>Od lat:</b> {{ min_age }}
+                    <br>
+                    <b>Produkcja:</b> {{ production }}
+                    <br>
+                    <b>Premiera:</b> {{ available_date|date('d-m-Y') }}
+                    <br>
+                    <b>Wygaśnięcie:</b> {{ expiration_date|date('d-m-Y') }}
+                    <br><br>
+                    <div class="absolute_buttons float-right">
+                        <button id="reservationButton" class="btn btn-success mx-2 btn-lg float-right" role="button" aria-pressed="true">REZERWUJ BILET</button>
+                        <a href="/movies" class="btn btn-success mx-2 btn-lg float-right" role="button" aria-pressed="true">POWRÓT</a>
+                    </div>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-1">
+    <div class="card">
+        <div class="card-body mx-auto">
+            <span class="mx-auto" style="color: white; font-family: Impact; font-size: 40px;">ZWIASTUN</span>
+        </div>
+        <div class="container">
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" src="{{ trailer_URL }}" allowfullscreen></iframe>
+            </div>
+        </div>
+        <br>
+    </div>
+</div>
+
+<script>
+    // Get the modal
+    var modal = document.getElementById("reservationModal");
+    console.log(modal);
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("reservationButton");
+
+    // When the user clicks on the button, open the modal
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>

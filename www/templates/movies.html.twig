@@ -1,0 +1,30 @@
+<div class="container mt-1">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-3">
+                    <img class="small_img" src="{{ poster_path }}" alt="">
+                </div>
+                <span class="col" style="color: white;">
+                    <span class="card-title" style="font-family: Impact; font-size: xx-large;">{{ title }}</span>
+                    <br>
+                    <b>Reżyseria:</b> {{ director }}
+                    <br>
+                    <b>Gatunek:</b> {{ genre }}
+                    <br>
+                    <b>Czas trwania:</b> {{ duration }} min.
+                    <br>
+                    <b>Od lat:</b> {{ min_age }}
+                    <br>
+                    <b>Produkcja:</b> {{ production }}
+                    <br>
+                    <b>Premiera:</b> {{ available_date|date('d-m-Y') }}
+                    <br>
+                    <b>Wygaśnięcie:</b> {{ expiration_date|date('d-m-Y') }}
+                    <br><br>
+                    <a href="/movies/show/{{ mid }}" class="btn btn-success mx-2 btn-lg float-right" role="button">SZCZEGÓŁY</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

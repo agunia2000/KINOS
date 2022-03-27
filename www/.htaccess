@@ -1,0 +1,9 @@
+RewriteEngine On
+RewriteRule ^logout$ ?logout=1 [NC,L,QSA]
+RewriteRule ^cart\/selection$ index.php?page=selection [NC,L,QSA]
+RewriteRule ^cart\/delivery-and-payment$ index.php?page=delivery-and-payment [NC,L,QSA]
+RewriteRule ^cart\/confirmation$ index.php?page=confirmation [NC,L,QSA]
+RewriteRule ^cart\/remove\/([0-9]+)$ index.php?page=cart&remove=$1 [NC,L,QSA]
+RewriteRule ^movies\/show\/([0-9]+)$ index.php?page=movies&show=$1 [NC,L,QSA]
+RewriteRule ^screening\/([0-9]+)$ index.php?page=hall&screening=$1 [NC,L,QSA]
+RewriteRule ^([a-zA-Z0-9-_/]+)$ index.php?page=$1 [NC,L,QSA]

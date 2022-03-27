@@ -1,0 +1,47 @@
+<head>
+    <link rel="stylesheet" href="/stylesheets/main_style.css">
+</head>
+
+<div class="jumbotron" style="background-color: #f5f5f5;">
+    <div class="container-xl">
+        <h1 class="neon-title">JUŻ TERAZ W NASZYM KINIE</h1>
+        <div class="row">
+            <div class="col-4 photo" >
+                <a id="cont1" href="/movies/show/{{ mid[0] }}"><img id="img1" src="{{ poster_path[0] }}" ></a>
+            </div>
+            <div class="col-4 photo">
+                <a id="cont2" href="/movies/show/{{ mid[1] }}"><img id="img2" src="{{ poster_path[1] }}" ></a>
+            </div>
+            <div class="col-4 photo">
+                <a id="cont3" href="/movies/show/{{ mid[2] }}"><img id="img3" src="{{ poster_path[2] }}" ></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const posters = [];
+    const id = [];
+    {% for i in 0..array_length-1 %}
+    posters[{{ i }}] = "{{ poster_path[i] }}";
+    id[{{ i }}] = "{{ mid[i] }}";
+    {% endfor %}
+
+    var intervalId = setInterval(function() {
+        for (let j = 0; j <= 2; j++) {
+		
+			let domain_length = window.location.origin.length;
+            let image = document.getElementById(("img").concat((j+1).toString()));
+            let current_index = posters.findIndex(element => element == (image.src).substring(domain_length));
+			
+            if (current_index >= {{ array_length - 1 }} ){
+                image.src = posters[current_index - {{ array_length -  1}}]
+                image.parentElement.href  = ("/movies/show/").concat(id[current_index - {{ array_length - 1 }}]);
+            } else {
+                image.src = posters[current_index + 1];
+                image.parentElement.href  = ("/movies/show/").concat(id[current_index + 1]);
+            }
+        }
+    }, 2500);
+
+</script>

@@ -1,0 +1,56 @@
+<head>
+    <link rel="stylesheet" href="/stylesheets/cart_style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<center>
+    <div class="container mb-5">
+        <div class="col-md-10">
+            <div class="card">
+                <div class="card-header">
+                    <b>KOSZYK</b>
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped" id="cart-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Lp.</th>
+                                <th scope="col">TYTUŁ</th>
+                                <th scope="col">DATA</th>
+                                <th scope="col">GODZINA</th>
+                                <th scope="col">SALA</th>
+                                <th scope="col">RZĄD</th>
+                                <th scope="col">MIEJSCE</th>
+                                <th scope="col">CENA</th>
+                                <th scope="col">USUŃ</th>
+                            </tr>
+                        </thead>
+                        {% if cart|length > 0 %}
+                            {% for ticket in cart %}
+                                <tbody>
+                                    <tr onclick="location.href='/screening/{{ ticket['sid'] }}'">
+                                        <td>{{ loop.index }}</td>
+                                        <td>{{ ticket['title'] }}</td>
+                                        <td>{{ ticket['day']|date('d-m-Y') }}</td>
+                                        <td>{{ ticket['time'][0:5] }}</td>
+                                        <td>{{ ticket['hid'] }}</td>
+                                        <td>{{ ticket['tier'] }}</td>
+                                        <td>{{ ticket['seat'] }}</td>
+                                        <td>{{ ticket['price'] }} PLN</td>
+                                        <td><a class="btn btn-sm" href="/cart/remove/{{ loop.index0 }}" style="color: white;"><i class="fa fa-trash"></i></a></td>
+                                    </tr>
+                                </tbody>
+                            {% endfor %}
+                        {% else %}
+                            <tbody>
+                            <td colspan="9" id="inscription">Twój koszyk jest pusty!</td>
+                            </tbody>
+                        {% endif %}
+                    </table>
+                    <a href="/movies" class="cart-buttons btn btn-success mx-2 btn-lg" role="button">POWRÓT</a>
+                    <a href="{{ next_step_cart_link }}" class="cart-buttons btn btn-success mx-2 btn-lg" role="button">DALEJ</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</center>

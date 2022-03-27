@@ -1,0 +1,26 @@
+<head>
+    <link rel="stylesheet" href="/stylesheets/login_style.css">
+</head>
+
+<center>
+<div class="container mb-5">
+    <div class="col-md-6">
+        <div class="card mb-3">
+            <div class="card-header">
+              <b>LOGOWANIE</b>
+            </div>
+            <div class="card-body">
+                <form action="/login" method="POST">
+                    <input id="login-input-email" type="email" name="email" placeholder="E-mail" required>
+                    <br>
+                    <input id="login-input-password" type="password" name="password" placeholder="Hasło" required>
+                    <br>
+                    <input class="btn btn-success btn-lg" type="submit" name="login" value="ZALOGUJ SIĘ">
+                    <br>
+                    {{ message }}
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</center>

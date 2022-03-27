@@ -1,0 +1,87 @@
+<head>
+    <link rel="stylesheet" href="/stylesheets/cart_style.css">
+</head>
+
+<center>
+    <form action="/cart/delivery-and-payment" method="POST" >
+        <div class="container mb-5">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card" >
+                        <div class="card-header" >
+                            <b>DANE REZERWUJĄCEGO</b>
+                        </div>
+                        <div class="card-body" style="margin-bottom: -12px;">
+                            <input class="cart_inputs" type="text" name="name" placeholder="Imię" value="{{ name }}">
+                            <input class="cart_inputs" type="text" name="surname" placeholder="Nazwisko" value="{{ surname }}">
+                            <br>
+                            <input class="cart_inputs" type="text" name="street" placeholder="Ulica" value="{{ street }}">
+                            <input class="cart_inputs" type="text" name="street_number" placeholder="Nr domu/lokalu" value="{{ street_number }}">
+                            <br>
+                            <input class="cart_inputs" type="text" name="postcode" placeholder="Kod pocztowy" value="{{ postcode }}">
+                            <input class="cart_inputs" type="text" name="city" placeholder="Miasto" value="{{ city }}">
+                            <br>
+                            <input class="cart_inputs" type="email" name="email" placeholder="E-mail" value="{{ email }}">
+                            <input class="cart_inputs" type="text" name="phone_number" placeholder="Telefon" value="{{ phone_number }}">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <b>PODSUMOWANIE</b>
+                        </div>
+                        <div class="card-body card-text">
+                            <div class="summary"><b>ILOŚĆ BILETÓW: </b>{{ cart|length }}</div>
+                            <div class="summary"><b>SUMA: </b>{{ cart|length*20 }} PLN</div>
+                            <a href = "/cart" class="btn btn-success btn-md" style = "width: 80%;" >EDYTUJ</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card mt-3">
+                        <div class="card-header">
+                            <b>FORMA DOSTAWY</b>
+                        </div>
+                        <div class="card-body card-radio-buttons">
+                            <input type="radio" id="collection" name="delivery" value="collection">
+                            <label for="collection">ODBIÓR OSOBISTY</label>
+                            <br>
+                            <input type="radio" id="e-ticket" name="delivery" value="e-ticket">
+                            <label for="e-ticket">BILET ELEKTRONICZNY</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card mt-3">
+                        <div class="card-header">
+                            <b>FORMA PŁATNOŚCI</b>
+                        </div>
+                        <div class="card-body card-radio-buttons">
+                            <input type="radio" id="by-collection" name="payment" value="by-collection">
+                            <label for="by-collection">PŁATNOŚĆ PRZY ODBIORZE</label>
+                            <br>
+                            <input type="radio" id="transfer" name="payment" value="transfer">
+                            <label for="transfer">PRZELEW (PayU, BLIK)</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card mt-3">
+                        <div class="card-body card-booking justify-content-center">
+                            <div class="g-recaptcha" data-sitekey="6LcrreYUAAAAAGeERM9Etdv8wlh81RCSK0LXuwfX"></div>
+                            <br>
+                            <input class="btn btn-success btn-lg" id="booking-button" type="submit" name="confirm_reservation" value="REZERWUJ">
+                            <br>
+                            <a style="width: 100%;">{{ message }}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</center>

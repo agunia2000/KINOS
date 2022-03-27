@@ -1,0 +1,62 @@
+<div style="text-align: center;">
+    <p class="display-4" style="margin-bottom: -5px;">{{ title }}</p>
+    <p class="lead">{{ day|date('d-m-Y') }} {{ time[0:5] }}</p>
+    <p style="margin-top: 10px;">EKRAN</p>
+</div>
+<div style="text-align: center; display: flex; align-items: center; justify-content: center;">
+    <table id="table">
+        {% for i in 1..tiers %}
+            <tr>
+                <td class="d-flex p-2 flex-row-reverse" style="height: 40px; margin-top: 5px; margin-bottom: 5px;">{{ i }} —————</td>
+                {% for j in 1..seats %}
+                    <td>
+                        <button type="button" class="seats_button btn btn-secondary btn-md mx-1" style="width: 40px; height: 40px; margin: 5px; text-align: center; font-size: small;" id="place,{{ i }},{{ j }}">{{ j }}</button>
+                    </td>
+                {% endfor %}
+                <td class="d-flex p-2 flex-row" style="height: 40px; margin-top: 5px; margin-bottom: 5px;">————— {{ i }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+<div style="text-align: center; margin-top: 15px; margin-bottom: 15px;">
+    <a href="/movies/show/{{ mid }}" class="btn btn-success mx-2 btn-lg" style="width: 270px;" role="button">POWRÓT</a>
+    <form method="POST" action="/cart" style="display: inline-block;">
+        <input id="sid" name="sid" type="hidden" value="{{ sid }}">
+        <input id="seats" name="seats" type="hidden">
+        <button type="submit" name="cart_update" class="btn btn-success mx-2 btn-lg" style="width: 270px;">DODAJ DO KOSZYKA</button>
+    </form>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script>
+    let taken_places = [];
+    $(document).ready(function () {
+        {% for ss in sold_seats %}
+            document.getElementById("place,{{ ss['tier'] }},{{ ss['seat'] }}").style.backgroundColor = "firebrick";
+            document.getElementById("place,{{ ss['tier'] }},{{ ss['seat'] }}").disabled = true;
+        {% endfor %}
+        {% for cs in chosen_seats %}
+            document.getElementById("place,{{ cs['tier'] }},{{ cs['seat'] }}").style.backgroundColor = "dodgerblue";
+            taken_places.push([({{ cs['tier'] }}), ({{ cs['seat'] }})]);
+        {% endfor %}
+        document.getElementById("seats").value = taken_places;
+    });
+
+    $(".seats_button").click(function () {
+        let tier = this.id.split(",")[1];
+        let seat = this.id.split(",")[2];
+        if (this.style.backgroundColor == "dodgerblue") {
+            for (let i = 0; i < taken_places.length; i++) {
+                if (taken_places[i][0]== tier && taken_places[i][1] == seat) {
+                    taken_places.splice(i, 1);
+                    i--;
+                }
+            }
+            this.style.backgroundColor = null;
+        } else if (this.style.backgroundColor !== "firebrick") {
+            taken_places.push([tier, seat]);
+            this.style.backgroundColor = "dodgerblue";
+        }
+        document.getElementById("seats").value = taken_places;
+    });
+</script>

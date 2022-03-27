@@ -1,0 +1,23 @@
+<div class="container mt-1">
+    <div class="card">
+        <div class="card-body d-flex justify-content-center">
+            <form class="form-inline my-auto center" action="/movies" method="POST">
+                <input class="form-control mx-sm-2" name="title" placeholder="Wpisz tytuł">
+                <select class="form-control mx-sm-2" name="genre">
+                    <option selected value="">Gatunek</option>
+                    {% for genre in genreList %}
+                        <option value="{{ genre }}">{{ genre }}</option>
+                    {% endfor %}
+                </select>
+                <input type="number" min="1" class="form-control mx-sm-2" name="min_age" placeholder="Ograniczenie wiekowe">
+                <select class="form-control form-select-font-size-lg mx-sm-2" name="sort">
+                    <option selected>Sortuj według</option>
+                    <option value="available_date">Najnowsze</option>
+                    <option value="click_counter">Najpopularniejsze</option>
+                    <option value="title">Alfabetycznie</option>
+                </select>
+                <input value="Szukaj" type="submit" class="btn btn-success mx-2 btn-md" name="filter">
+            </form>
+        </div>
+    </div>
+</div>

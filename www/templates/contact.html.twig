@@ -1,0 +1,56 @@
+<head>
+    <link rel="stylesheet" href="/stylesheets/contact_style.css">
+</head>
+
+<div class="container mt-1">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <span class="col-5">
+                    <span class="card-title" style="font-size: xx-large;">NAPISZ DO NAS</span>
+                    <br><br>
+                    <form action="/contact" method="POST">
+                        <div class="form-group">
+                            <label for="emailForm">Adres e-mail</label>
+                            <input type="email" name="email" class="form-control" id="emailForm" required>
+                            <small id="emailHelp" class="form-text text-muted">Powyższy e-mail nie będzie nigdzie udostępniany.</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Wiadomość</label>
+                            <textarea name="message" class="form-control" id="message" rows="3" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-success btn-md" name="send">Wyślij</button>
+                    </form>
+                </span>
+                <span class="col-3">
+                    <span class="card-title text-md-center" style="font-size: xx-large;">KONTAKT</span>
+                    <br><br>
+                    <b>SIEDZIBA</b>
+                    <br>
+                    Aleja Adama Mickiewicza 30
+                    <br>
+                    30-059 Kraków
+                    <br>
+                    Telefon: +48 123 456 789
+                    <br>
+                    NIP: PL1234567890
+                    <br>
+                    REGON: 123456789
+                    <br><br>
+                    <b>ZARZĄD</b>
+                    <br>
+                    Maksymilian Dziadoń
+                    <br>
+                    Amadeusz Gunia
+                    <br>
+                    Kacper Jabłoński
+                </span>
+                <span class="col-4">
+                    <span class="card-title text-md-center" style="font-size: xx-large;">MAPA DOJAZDU</span>
+                    <br><br>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4582.962997911284!2d19.90954692067275!3d50.067893503273375!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47165ba756b59b21%3A0xb20c8dba21b317d1!2sAkademia%20G%C3%B3rniczo-Hutnicza%20im.%20Stanis%C5%82awa%20Staszica%20w%20Krakowie!5e0!3m2!1spl!2spl!4v1644240369639!5m2!1spl!2spl" width="275" height="275" style="border:0;"></iframe>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
